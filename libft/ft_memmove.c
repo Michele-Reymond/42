@@ -6,13 +6,11 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:53:10 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/19 14:50:59 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/20 15:44:27 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h> 
-
-unsigned int	ft_strlen(const char *str);
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {

@@ -16,11 +16,10 @@
 
 int main()
 {
-	char c = 'y';
-	char str[] = "bye bye!";
+	char str[] = "tripouille";
 
-	char *a = strchr(str, c);
-	char *b = ft_strchr(str, c);
+	char *a = strchr(str, 'z');
+	char *b = ft_strchr(str, 'z');
 
 	printf("strstr: %s\n", a);
 	printf("ft: %s\n", b);

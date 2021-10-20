@@ -16,11 +16,11 @@
 
 int main()
 {
-	char dst[0xF00] = "";
-	char src[0xF00] = "thx to ntoniolo for this test !";
-	char dst2[0xF00] = "";
-	char src2[0xF00] = "thx to ntoniolo for this test !";
-	int size = 4;
+	char dst[0xF00] = "BBBB";
+	char src[0xF00] = "AAAAAAAAA";
+	char dst2[0xF00] = "BBBB";
+	char src2[0xF00] = "AAAAAAAAA";
+	int size = 6;
 
 	int a = strlcat(dst, src, size);
 	printf("strlcat: \n%s\n", dst);

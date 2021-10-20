@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/13 16:39:08 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/20 13:26:50 by mreymond         ###   ########.fr       */
+/*   Created: 2021/10/20 17:04:39 by mreymond          #+#    #+#             */
+/*   Updated: 2021/10/20 18:17:40 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> 
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+int	ft_atoi(const char *str)
 {
-	size_t	i;
-	size_t	j;
-	size_t	len;
+	int	i;
+	int	num;
+	int	temp;
 
 	i = 0;
-	j = 0;
-	len = 0;
-	while (dst[j] != '\0')
-		j++;
-	while (src[len] != '\0')
-		len++;
-	if (dstsize == 0)
-		return (len);
-	if (dstsize <= j)
-		return (len + dstsize);
-	len = j + len;
-	while (src[i] != '\0' && j < (dstsize - 1))
-	{
-		dst[j] = src[i];
+	temp = 0;
+	num = 1;
+	if (str[i] == '-')
+		num = num * -1;
+	if (str[i] == '-' || str[i] == '+')
 		i++;
-		j++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		temp = temp * 10 + (str[i] - 48);
+		i++;
 	}
-	dst[j] = '\0';
-	return (len);
+	temp = temp * num;
+	return (temp);
 }
