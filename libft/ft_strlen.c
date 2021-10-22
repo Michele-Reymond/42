@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:11:51 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/15 11:27:20 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/22 15:35:13 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlen(const char *str)
+#include <stddef.h>
+
+size_t	ft_strlen(const char *str)
 {
 	int	i;
 

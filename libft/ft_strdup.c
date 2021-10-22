@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:43:22 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/22 15:38:15 by mreymond         ###   ########.fr       */
+/*   Created: 2021/10/22 15:25:36 by mreymond          #+#    #+#             */
+/*   Updated: 2021/10/22 15:50:17 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> 
+#include <stdlib.h>
 
-void	ft_bzero(void *str, size_t n)
+size_t	ft_strlen(const char *str);
+
+char	*ft_strdup(const char *s1)
 {
-	size_t			i;
-	unsigned char	*a;
+	size_t	len;
+	char	*str;
+	int		i;
 
-	a = str;
-	i = 0;
-	while (i < n && n != 0)
-	{
-		a[i] = '\0';
-		i++;
-	}
+	i = -1;
+	len = ft_strlen(s1) + 1;
+	str = (char *)malloc(sizeof(char) * len);
+	if (!str)
+		return (NULL);
+	while (s1[++i] != '\0')
+		str[i] = s1[i];
+	str[i] = '\0';
+	return (str);
 }

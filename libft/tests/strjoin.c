@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   strjoin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:43:22 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/22 15:38:15 by mreymond         ###   ########.fr       */
+/*   Created: 2021/10/11 13:05:06 by mreymond          #+#    #+#             */
+/*   Updated: 2021/10/22 17:27:11 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "../ft_strlen.c"
+#include "../ft_strjoin.c"
 
-void	ft_bzero(void *str, size_t n)
+int main()
 {
-	size_t			i;
-	unsigned char	*a;
+    char *s = ft_strjoin("coucou", "les amis");
+    printf("%s\n", s);
+    free(s);
+}	
 
-	a = str;
-	i = 0;
-	while (i < n && n != 0)
-	{
-		a[i] = '\0';
-		i++;
-	}
-}
+
+// si start > longueur de str - 1
+// on retourn juste str avec un \0
+
+// si len > longueur de str len vaut la longueur de str?
+// et start < size

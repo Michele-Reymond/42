@@ -6,13 +6,13 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:38:48 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/18 17:13:29 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/22 15:36:44 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-unsigned int	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	unsigned int	i;
 

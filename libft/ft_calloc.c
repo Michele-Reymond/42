@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:43:22 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/22 15:38:15 by mreymond         ###   ########.fr       */
+/*   Created: 2021/10/22 14:46:42 by mreymond          #+#    #+#             */
+/*   Updated: 2021/10/22 15:21:28 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> 
+#include <stdlib.h>
 
-void	ft_bzero(void *str, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t			i;
-	unsigned char	*a;
+	char	*ptr;
+	size_t	i;
 
-	a = str;
 	i = 0;
-	while (i < n && n != 0)
-	{
-		a[i] = '\0';
-		i++;
-	}
+	ptr = malloc(size * count);
+	if (!ptr)
+		return (NULL);
+	while (++i < size * count)
+		ptr[i] = 0;
+	return (ptr);
 }

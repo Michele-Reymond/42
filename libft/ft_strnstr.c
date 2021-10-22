@@ -6,13 +6,13 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:03:05 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/20 16:59:52 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/22 15:36:07 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h> 
 
-unsigned int	ft_strlen(const char *str);
+size_t	ft_strlen(const char *str);
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
