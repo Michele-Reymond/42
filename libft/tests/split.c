@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/11 17:32:55 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/25 13:59:24 by mreymond         ###   ########.fr       */
+/*   Created: 2021/10/11 13:05:06 by mreymond          #+#    #+#             */
+/*   Updated: 2021/10/25 17:51:11 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "../ft_strlen.c"
+#include "../ft_strlcpy.c"
+#include "../ft_substr.c"
+#include "../ft_strtrim.c"
+#include "../ft_split.c"
 
-void	*ft_memset(void *str, int c, unsigned int n)
+int	main()
 {
-	unsigned int	i;
-	unsigned char	*a;
-
-	a = str;
+	int i;
 	i = 0;
-	while (i < n && n != 0)
+	char **str = ft_split("         ", ' ');
+	// printf("sortie: %s\n", str[0]);
+	// printf("sortie: %s\n", str[1]);
+	// printf("sortie: %s\n", str[2]);
+	while (str[i] != NULL)
 	{
-		a[i] = c;
+		free(str[i]);
 		i++;
 	}
-	return (str);
-}
+	free(str);
+}	 

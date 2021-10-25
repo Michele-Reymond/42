@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   strtrim.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/11 17:32:55 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/25 13:59:24 by mreymond         ###   ########.fr       */
+/*   Created: 2021/10/11 13:05:06 by mreymond          #+#    #+#             */
+/*   Updated: 2021/10/25 17:55:14 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "../ft_strlen.c"
+#include "../ft_substr.c"
+#include "../ft_strtrim.c"
 
-void	*ft_memset(void *str, int c, unsigned int n)
+int	main()
 {
-	unsigned int	i;
-	unsigned char	*a;
+	char *str = ft_strtrim("    ", " ");
+	printf("%s\n", str);
+}	 
 
-	a = str;
-	i = 0;
-	while (i < n && n != 0)
-	{
-		a[i] = c;
-		i++;
-	}
-	return (str);
-}
