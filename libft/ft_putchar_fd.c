@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 16:21:48 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/26 18:42:26 by mreymond         ###   ########.fr       */
+/*   Created: 2021/10/26 18:21:38 by mreymond          #+#    #+#             */
+/*   Updated: 2021/10/26 18:32:59 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int c)
+#include <unistd.h>
+
+void    ft_putchar_fd(char c, int fd)
 {
-	if (c >= 'A' && c <= 'Z')
-		c = c + 32;
-	return (c);
+    write(fd, &c, 1);
 }

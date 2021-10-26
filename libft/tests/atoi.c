@@ -22,7 +22,7 @@ int main()
 	int		b = ft_atoi(str);
 
 	if (a == b)
-		printf("OK\n");
+	printf("OK\n");
 	printf("atoi: %d\n", a);
 	printf("ft: %d\n", b);
 }	
