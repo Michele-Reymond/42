@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 15:07:52 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/25 17:59:37 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/27 17:46:26 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 char	**ft_split(char const *s, char c)
 {
-	char **strtab;
-	char *str;
-	char *str2;
-	int i;
-	int j;
-	int y;
-	int temp;
-	int sep;
+	char	**strtab;
+	char	*str;
+	char	*str2;
+	int		i;
+	int		j;
+	int		y;
+	int		temp;
+	int		sep;
 
 	i = 0;
 	y = 0;

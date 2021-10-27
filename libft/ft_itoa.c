@@ -6,58 +6,58 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 14:03:52 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/26 17:07:33 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/27 17:44:26 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h> 
 #include <stdlib.h>
 
-static int  itoa_count(int n)
+static int	itoa_count(int n)
 {
-    int len;
+	int	len;
 
-    len = 0;
-    if (n < 0)
-    {
-        n = n * -1;
-        len++;
-    }
-    while (n > 0)
-    {
-        len++;
-        n /= 10;
-    }
-    len++;
-    return (len);
+	len = 0;
+	if (n < 0)
+	{
+		n = n * -1;
+		len++;
+	}
+	while (n > 0)
+	{
+		len++;
+		n /= 10;
+	}
+	len++;
+	return (len);
 }
 
-char    *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-    int     neg;
-    int     len;
-    int     last;
-    char    *str;
+	int		neg;
+	int		len;
+	int		last;
+	char	*str;
 
-    neg = 1;
-    if (n < 0)
-        neg = -1;
-    last = n % 10 * neg;
-    n = n / 10;
-    len = itoa_count(n);
-    str = (char *)malloc(sizeof(char) * len + 1);
-    if (str == NULL)
-        return (NULL);
-    str[len] = '\0';
-    str[--len] = last + 48;
-    while (--len > -1)
-    {
-        str[len] = (n * neg) % 10 + 48;
-        n /= 10;
-    }
-    if (neg < 0)
-        str[0] = '-';
-    return (str);
+	neg = 1;
+	if (n < 0)
+		neg = -1;
+	last = n % 10 * neg;
+	n = n / 10;
+	len = itoa_count(n);
+	str = (char *)malloc(sizeof(char) * len + 1);
+	if (str == NULL)
+		return (NULL);
+	str[len] = '\0';
+	str[--len] = last + 48;
+	while (--len > -1)
+	{
+		str[len] = (n * neg) % 10 + 48;
+		n /= 10;
+	}
+	if (neg < 0)
+		str[0] = '-';
+	return (str);
 }
 
 // Alloue (avec malloc(3)) et retourne une chaine de

@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 13:05:06 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/22 15:53:46 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:53:35 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int main()
 {
-	char	str[] = "     +2lyon";
+	char	str[] = "-9223372036854775807";
 	int 	a = atoi(str);
 	int		b = ft_atoi(str);
 

@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 16:03:48 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/22 16:54:08 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:17:03 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t			size;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	size = ft_strlen(s);
 	if (len > size && start < size)
 		len = size - (size_t)start + 1;

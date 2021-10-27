@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 10:54:46 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/20 11:03:50 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:26:41 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t			i;
-	const char		*str;
+	unsigned char	*str;
 	unsigned char	lettre;
 
 	lettre = c;
 	i = 0;
-	str = s;
+	str = (unsigned char *)s;
 	if (n == 0)
 		return (NULL);
-	while (str && i < n)
+	while (str && i < n - 1)
 	{
 		if (*str == lettre)
 			return ((void *) str);
@@ -34,3 +34,10 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		return ((void *) str);
 	return (NULL);
 }
+
+// The memchr() function locates the first occurrence 
+// of c (converted to an unsigned char) in string s.
+
+// RETURNThe memchr() function returns a pointer 
+// to the byte located, or NULL if no such byte 
+// exists within n bytes.

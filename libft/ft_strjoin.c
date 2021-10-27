@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 17:02:48 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/22 17:27:57 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:45:18 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len;
 
 	i = -1;
+	if (!s1)
+		return (NULL);
 	j = ft_strlen(s1);
 	len = j + ft_strlen(s2) + 2;
 	str = (char *)malloc(sizeof(char) * len);

@@ -6,7 +6,7 @@
 #    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/15 15:39:35 by mreymond          #+#    #+#              #
-#    Updated: 2021/10/26 18:51:40 by mreymond         ###   ########.fr        #
+#    Updated: 2021/10/27 11:03:18 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRCS = ft_bzero.c \
        ft_putchar_fd.c \
        ft_putstr_fd.c \
        ft_putendl_fd.c \
-       ft_putnbr_fd.c
+       ft_putnbr_fd.c \
+       ft_strmapi.c
 
 OBJS = ${SRCS:.c=.o}
 

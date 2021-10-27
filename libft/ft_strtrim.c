@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 13:40:15 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/25 15:05:08 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:10:47 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,74 @@
 size_t	ft_strlen(const char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
+static int	starttrim(const char *s1, const char *set)
+{
+	int	i;
+	int	j;
+	int	start;
+
+	i = 0;
+	j = 0;
+	start = 0;
+	while (s1[j] != '\0')
+	{
+		i = 0;
+		while (set[i] != '\0')
+		{
+			if (set[i] == s1[j])
+			{
+				start++;
+				break ;
+			}
+			i++;
+		}
+		if (set[i] == '\0')
+			break ;
+		j++;
+	}
+	return (start);
+}
+
+static int	endtrim(const char *s1, const char *set, int start)
+{
+	int	i;
+	int	j;
+	int	end;
+
+	i = 0;
+	end = ft_strlen(s1);
+	j = end - 1;
+	while (j > start)
+	{
+		i = 0;
+		while (set[i] != '\0')
+		{
+			if (set[i] == s1[j])
+			{
+				end--;
+				break ;
+			}
+			i++;
+		}
+		if (set[i] == '\0')
+			break ;
+		j--;
+	}
+	return (end);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
 	char	*str;
 	int		start;
 	int		end;
 	int		len;
 
-	i = -1;
-	start = 0;
-	while (set[++i] != '\0')
-	{
-		while (set[i] == s1[start])
-			start++;
-	}
-	i = ft_strlen(set) + 1;
-	end = ft_strlen(s1);
-	while (--i >= 0)
-	{
-		while (set[i] == s1[end])
-			end--;
-	}
-	len = end - start + 1;
+	if (!s1)
+		return (NULL);
+	start = starttrim(s1, set);
+	end = endtrim(s1, set, start);
+	len = end - start;
 	str = ft_substr(s1, start, len);
 	return (str);
 }

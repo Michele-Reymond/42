@@ -6,15 +6,18 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:04:39 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/22 15:59:03 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:59:50 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
+#include <stddef.h> 
+
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	num;
-	int	temp;
+	int			i;
+	int			num;
+	long int	temp;
 
 	i = 0;
 	temp = 0;

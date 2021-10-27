@@ -18,8 +18,8 @@ int main()
 {
 	char str1[] = {0, 1, 2 ,3 ,4 ,5};
 
-	void *a = memchr(str1, 0, 0);
-	void *b = ft_memchr(str1, 0, 0);
+	void *a = memchr(str1, 5, 5);
+	void *b = ft_memchr(str1, 5, 5);
 
 	printf("memchr: %s\n", a);
 	printf("ft: %s\n", b);
