@@ -6,11 +6,11 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:39:08 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/20 13:26:50 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/31 12:03:25 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> 
+#include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {

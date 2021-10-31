@@ -6,12 +6,11 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 14:03:52 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/27 17:44:26 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/31 12:02:18 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> 
-#include <stdlib.h>
+#include "libft.h"
 
 static int	itoa_count(int n)
 {

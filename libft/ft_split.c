@@ -6,21 +6,17 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 15:07:52 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/30 16:13:14 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/31 12:12:33 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> 
-#include <stdlib.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *str);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-
-static int countwords(char const *s, char c)
+static int	countwords(char const *s, char c)
 {
 	int		i;
 	int		words;
-	size_t sep;
+	size_t	sep;
 
 	i = 0;
 	words = 0;
@@ -42,7 +38,7 @@ static int countwords(char const *s, char c)
 	return (words);
 }
 
-static int copywords(char **strtab, char const *s, char c, int words)
+static int	copywords(char **strtab, char const *s, char c, int words)
 {
 	int	len;
 	int	i;
@@ -56,7 +52,7 @@ static int copywords(char **strtab, char const *s, char c, int words)
 		while (s[i] == c && s[i] != '\0')
 			i++;
 		len = 0;
-		while (s[i] != c && s[i] != '\0')	
+		while (s[i] != c && s[i] != '\0')
 		{
 			i++;
 			len++;
@@ -72,11 +68,10 @@ static int copywords(char **strtab, char const *s, char c, int words)
 
 char	**ft_split(char const *s, char c)
 {
-	char		**strtab;
-	int			i;
-	int			y;
-	int 		words;
-	// int 		len;
+	char	**strtab;
+	int		i;
+	int		y;
+	int		words;
 
 	i = 0;
 	y = 0;

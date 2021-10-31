@@ -6,11 +6,11 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 17:11:51 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/22 15:35:13 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/31 12:03:32 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 size_t	ft_strlen(const char *str)
 {

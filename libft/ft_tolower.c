@@ -6,9 +6,11 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:21:48 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/27 17:46:51 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/31 12:04:15 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_tolower(int c)
 {

@@ -6,12 +6,11 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:04:39 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/27 15:59:50 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/31 12:01:16 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <stddef.h> 
+#include "libft.h" 
 
 int	ft_atoi(const char *str)
 {

@@ -6,14 +6,11 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 13:40:15 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/27 14:10:47 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/31 12:04:05 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> 
-
-size_t	ft_strlen(const char *str);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+#include "libft.h"
 
 static int	starttrim(const char *s1, const char *set)
 {

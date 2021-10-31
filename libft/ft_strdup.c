@@ -6,13 +6,11 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 15:25:36 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/22 15:50:17 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/31 12:03:17 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *str);
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {

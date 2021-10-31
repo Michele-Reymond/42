@@ -6,11 +6,11 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 11:23:50 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/18 19:00:02 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/10/31 12:02:30 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h> 
+#include "libft.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
