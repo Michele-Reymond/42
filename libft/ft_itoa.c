@@ -6,22 +6,18 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 14:03:52 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/01 10:23:11 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/01 11:19:11 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	itoa_count(int n)
+static int	itoa_count(long int n)
 {
 	int	len;
 
-	if (n >= -9 && n <= -1)
-		len = 1;
-	else
-		len = 0;
-	n = n / 10;
-	if (n < 0)
+	len = 0;
+	if (n <= 0)
 	{
 		n = n * -1;
 		len++;
@@ -31,7 +27,6 @@ static int	itoa_count(int n)
 		len++;
 		n /= 10;
 	}
-	len++;
 	return (len);
 }
 
@@ -39,23 +34,19 @@ char	*ft_itoa(int n)
 {
 	int		neg;
 	int		len;
-	int		last;
 	char	*str;
 
 	neg = 1;
 	if (n < 0)
 		neg = -1;
-	last = n % 10 * neg;
 	len = itoa_count(n);
-	n = n / 10;
 	str = (char *)malloc(sizeof(char) * len + 1);
 	if (str == NULL)
 		return (NULL);
 	str[len] = '\0';
-	str[--len] = last + 48;
 	while (--len > -1)
 	{
-		str[len] = (n * neg) % 10 + 48;
+		str[len] = (n % 10) * neg + 48;
 		n /= 10;
 	}
 	if (neg < 0)
