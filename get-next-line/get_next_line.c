@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:04:27 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/07 18:47:10 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/08 18:31:42 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,34 @@
 
 char	*get_next_line(int fd)
 {
-	char	str[BUFFER_SIZE];
-	char	*dst;
-	size_t	a;
-	int		len;
-	int		i;
+	static char	buffer[BUFFER_SIZE];
+	char		*dst = "";
+	size_t		lecture;
+	size_t		len;
+	int 		i;
+	static int 	b = 0;
 
 	i = 0;
 	len = 0;
-	a = read(fd, str, BUFFER_SIZE);
-	if (a == 0)
+	lecture = 1;
+	dst = ft_strtrim(buffer, "\n");
+	if (lecture == 0 || (fd < 0 || fd >= 1000))
 		return (NULL);
-	while (str[len] != '\n' && len < BUFFER_SIZE)
-		len++;
-	dst = (char *)malloc(sizeof(char) * len + 1);
-	if (dst == NULL)
-		return (NULL);
-	while (str[i] != '\n' && i < BUFFER_SIZE)
+	// ici je creer dst jusqu'au \n ou la fin du fichier
+	while (lecture != 0)
 	{
-		dst[i] = str[i];
-		i++;
+		printf("%d - buffer : %s\n", b, buffer);
+		lecture = read(fd, buffer, BUFFER_SIZE);
+		if (ft_strchr(buffer, '\n') != 0)
+		{
+			dst = ft_strjoin(dst, "\n");
+			break ;
+		}
+		dst = ft_strjoin(dst, buffer);
 	}
-	dst[i] = '\n';
-	dst[++i] = '\0';
+	dst = ft_strjoin(dst, "\0");
+	printf("%d - dst : %s\n", b, dst);
+	b++;
 	return (dst);
 }
 
@@ -51,3 +56,8 @@ char	*get_next_line(int fd)
 
 // FUNCTIONS
 // read, malloc, free
+
+// read un caractere a la fois jusqu'au \n
+// le concatener a chaque fois
+
+
