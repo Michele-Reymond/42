@@ -6,9 +6,11 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:08:20 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/08 18:15:35 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/09 16:35:19 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -92,74 +94,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-static int	starttrim(const char *s1, const char *set)
+void	ft_bzero(void *str, size_t n)
 {
-	int	i;
-	int	j;
-	int	start;
+	size_t			i;
+	unsigned char	*a;
 
+	a = str;
 	i = 0;
-	j = 0;
-	start = 0;
-	while (s1[j] != '\0')
+	while (i < n && n != 0)
 	{
-		i = 0;
-		while (set[i] != '\0')
-		{
-			if (set[i] == s1[j])
-			{
-				start++;
-				break ;
-			}
-			i++;
-		}
-		if (set[i] == '\0')
-			break ;
-		j++;
+		a[i] = '\0';
+		i++;
 	}
-	return (start);
 }
 
-static int	endtrim(const char *s1, const char *set, int start)
-{
-	int	i;
-	int	j;
-	int	end;
-
-	i = 0;
-	end = ft_strlen(s1);
-	j = end - 1;
-	while (j > start)
-	{
-		i = 0;
-		while (set[i] != '\0')
-		{
-			if (set[i] == s1[j])
-			{
-				end--;
-				break ;
-			}
-			i++;
-		}
-		if (set[i] == '\0')
-			break ;
-		j--;
-	}
-	return (end);
-}
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	char	*str;
-	int		start;
-	int		end;
-	int		len;
-
-	if (!s1)
-		return (NULL);
-	start = starttrim(s1, set);
-	end = endtrim(s1, set, start);
-	len = end - start;
-	str = ft_substr(s1, start, len);
-	return (str);
-}
