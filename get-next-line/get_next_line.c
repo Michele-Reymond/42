@@ -6,87 +6,92 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:04:27 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/09 16:52:22 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/10 17:41:45 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*befor_line_break(char *str)
+char	*end_of_line(char *str, int size)
 {
 	char	*dst;
 	int		i;
 
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i] != '\n' && i < size)
 		i++;
-	dst = (char *)malloc(sizeof(char) * i);
+	while (str[i] == '\n' && i < size)
+		i++;
+	dst = malloc(sizeof(char) * i + 1);
+	if (dst == NULL)
+		return (NULL);
 	i = 0;
-	while (str[i] != '\n')
+	while (str[i] != '\n' && i < size)
 	{
 		dst[i] = str[i];
 		i++;
 	}
-	dst[i] = '\n';
+	while (str[i] == '\n')
+	{
+		dst[i] = str[i];
+		i++;
+	}
+	dst[i] = '\0';
 	return (dst);
 }
 
-char	*after_line_break(char *str, int size)
+char	*start_of_line(char *str, int size)
 {
 	char	*dst;
 	int		i;
-	int		tmp;
+	int		j;
 
 	i = 0;
-	tmp = size;
-	while (str[size] != '\n')
-	{
+	j = 0;
+	if (ft_strchr(str, '\n') == 0)
+		return (str);
+	while (str[i] != '\n' && i < size)
 		i++;
-		size--;
-	}
-	dst = malloc(sizeof(char) * i);
-	size++;
-	i = 0;
-	while (size <= tmp)
+	dst = malloc(sizeof(char) * size - i + 1);
+	if (dst == NULL)
+		return (NULL);
+	while (str[i] == '\n')
 	{
-		dst[i] = str[size];
-		size++;
+		dst[j] = str[i];
 		i++;
+		j++;
 	}
+	while (i <= size)
+	{
+		dst[j] = str[i];
+		i++;
+		j++;
+	}
+	dst[i] = '\0';
 	return (dst);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE];
-	static char	*dst;
-	char		*tmp;
-	size_t		lecture;
+	char		buffer[BUFFER_SIZE];
+	static char	*dst = "";
+	int			lecture;
 	int			i;
-	// size_t		len;
 
 	i = 0;
-	lecture = 1;
-	tmp = after_line_break(buffer, BUFFER_SIZE);
-	dst = tmp;
-	if (lecture == 0 || (fd < 0 || fd >= 1000))
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (lecture != 0)
+	lecture = read(fd, buffer, BUFFER_SIZE);
+	if (lecture == -1)
+		return (NULL);
+	dst = start_of_line(buffer, BUFFER_SIZE);
+	while (lecture != 0 && ft_strchr(buffer, '\n') == 0)
 	{
-		ft_bzero(buffer, BUFFER_SIZE);
 		lecture = read(fd, buffer, BUFFER_SIZE);
-		if (ft_strchr(buffer, '\n') != 0)
-		{
-			tmp = befor_line_break(buffer);
-			dst = ft_strjoin(dst, tmp);
-			break ;
-		}
-		if (lecture != 0)
-			dst = ft_strjoin(dst, buffer);
+		dst = ft_strjoin(dst, buffer);
 	}
-	free(tmp);
-	dst = ft_strjoin(dst, "\0");
-	printf("%s", dst);
+	dst = ft_strjoin(dst, end_of_line(buffer, BUFFER_SIZE));
+	printf("%s\n", dst);
 	return (dst);
 }
 
@@ -101,5 +106,3 @@ char	*get_next_line(int fd)
 
 // FUNCTIONS
 // read, malloc, free
-
-// si 2 \n a la suite??
