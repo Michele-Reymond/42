@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:04:27 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/10 17:41:45 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:23:22 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*end_of_line(char *str, int size)
+char	*clean_end_of_line(char *str)
 {
 	char	*dst;
 	int		i;
 
 	i = 0;
-	while (str[i] != '\n' && i < size)
+	if (str == NULL)
+		return (NULL);
+	while (str[i] && str[i] != '\n')
 		i++;
-	while (str[i] == '\n' && i < size)
-		i++;
-	dst = malloc(sizeof(char) * i + 1);
+	dst = (char *)malloc(sizeof(char) * i + 2);
 	if (dst == NULL)
 		return (NULL);
 	i = 0;
-	while (str[i] != '\n' && i < size)
+	while (str[i] && str[i] != '\n')
 	{
 		dst[i] = str[i];
 		i++;
@@ -40,7 +40,7 @@ char	*end_of_line(char *str, int size)
 	return (dst);
 }
 
-char	*start_of_line(char *str, int size)
+char	*clean_start_of_line(char *str)
 {
 	char	*dst;
 	int		i;
@@ -48,51 +48,65 @@ char	*start_of_line(char *str, int size)
 
 	i = 0;
 	j = 0;
-	if (ft_strchr(str, '\n') == 0)
-		return (str);
-	while (str[i] != '\n' && i < size)
+	while (str[i] && str[i] != '\n')
 		i++;
-	dst = malloc(sizeof(char) * size - i + 1);
+	if (!str[i])
+	{
+		free(str);
+		return (NULL);
+	}
+	dst = (char *)malloc(sizeof(char) * ft_strlen(str) - i + 1);
 	if (dst == NULL)
 		return (NULL);
-	while (str[i] == '\n')
+	i++;
+	while (str[i])
 	{
 		dst[j] = str[i];
 		i++;
 		j++;
 	}
-	while (i <= size)
-	{
-		dst[j] = str[i];
-		i++;
-		j++;
-	}
-	dst[i] = '\0';
+	dst[j] = '\0';
+	free(str);
 	return (dst);
+}
+
+char	*get_a_line(int fd, char *str)
+{
+	char		*buff;
+	int			lecture;
+
+	lecture = 1;
+	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (buff == NULL)
+		return (NULL);
+	while (lecture != 0 && !ft_strchr(str, '\n'))
+	{
+		lecture = read(fd, buff, BUFFER_SIZE);
+		if (lecture == -1)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[lecture] = '\0';
+		str = ft_strjoin(str, buff);
+	}
+	free(buff);
+	return (str);
 }
 
 char	*get_next_line(int fd)
 {
-	char		buffer[BUFFER_SIZE];
-	static char	*dst = "";
-	int			lecture;
-	int			i;
+	static char	*line = NULL;
+	char 		*tmpline;
 
-	i = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	line = get_a_line(fd, line);
+	if (line == NULL)
 		return (NULL);
-	lecture = read(fd, buffer, BUFFER_SIZE);
-	if (lecture == -1)
-		return (NULL);
-	dst = start_of_line(buffer, BUFFER_SIZE);
-	while (lecture != 0 && ft_strchr(buffer, '\n') == 0)
-	{
-		lecture = read(fd, buffer, BUFFER_SIZE);
-		dst = ft_strjoin(dst, buffer);
-	}
-	dst = ft_strjoin(dst, end_of_line(buffer, BUFFER_SIZE));
-	printf("%s\n", dst);
-	return (dst);
+	tmpline = clean_end_of_line(line);
+	line = clean_start_of_line(line);
+	return (tmpline);
 }
 
 // Write a function which returns a line read from a file descriptor
