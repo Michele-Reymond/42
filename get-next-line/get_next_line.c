@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:04:27 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/12 16:23:22 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/12 16:57:53 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*clean_end_of_line(char *str)
 	int		i;
 
 	i = 0;
-	if (str == NULL)
+	if (!str[i])
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
@@ -31,7 +31,7 @@ char	*clean_end_of_line(char *str)
 		dst[i] = str[i];
 		i++;
 	}
-	while (str[i] == '\n')
+	if (str[i] == '\n')
 	{
 		dst[i] = str[i];
 		i++;
@@ -75,10 +75,10 @@ char	*get_a_line(int fd, char *str)
 	char		*buff;
 	int			lecture;
 
-	lecture = 1;
-	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (buff == NULL)
 		return (NULL);
+	lecture = 1;
 	while (lecture != 0 && !ft_strchr(str, '\n'))
 	{
 		lecture = read(fd, buff, BUFFER_SIZE);

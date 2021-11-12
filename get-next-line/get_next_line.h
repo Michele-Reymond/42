@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:10:14 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/12 16:00:36 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/12 17:11:42 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@
 # include <fcntl.h>
 
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char*s1, char*s2);
-size_t	ft_strlen(const char *str);
-// size_t	ft_strlen(char *s);
-// char	*ft_strchr(char *s, int c);
-// char	*ft_strjoin(char *left_str, char *buff);
+size_t	ft_strlen(char *str);
 
 #endif
