@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:10:14 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/12 17:11:42 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/14 18:30:42 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ char	*get_next_line(int fd);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char*s1, char*s2);
 size_t	ft_strlen(char *str);
+char	*clean_start_of_line(char *str);
+char	*clean_end_of_line(char *str);
 
 #endif
