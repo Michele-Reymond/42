@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:04:27 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/14 18:33:17 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:05:44 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*get_next_line(int fd)
 {
 	static char	*line;
-	char 		*return_line;
+	char		*return_line;
 	char		buffer[BUFFER_SIZE + 1];
 	int			lecture;
 
