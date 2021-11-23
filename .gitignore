@@ -2,3 +2,6 @@
 libft/a.out
 libft/.DS_Store
 libft/.vscode
+printf/.vscode/
+printf/a.out
+printf/main.c
