@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:08:15 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/23 15:50:54 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/24 14:00:29 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end(ap);
-	return(1);
+	return (1);
 }
 
 /**

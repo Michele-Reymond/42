@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:14:01 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/23 17:44:25 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/24 15:13:17 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_putnbr(int n)
 	}
 	while (--i > -1)
 		write(1, &ptr[i], 1);
-	return(3);
+	return (3);
 }
 
 int	ft_putchar(char c)
@@ -59,11 +59,11 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
-int	ft_puthexa(long int hexa)
+int	ft_puthexa(size_t hexa, char lettre)
 {
-	int	i;
-	char str[100];
-	char c;
+	int		i;
+	char	str[100];
+	char	c;
 
 	i = 0;
 	while (hexa != 0)
@@ -71,12 +71,16 @@ int	ft_puthexa(long int hexa)
 		c = hexa % 16;
 		if (c >= 0 && c <= 9)
 			str[i] = c + 48;
-		if (c >= 10 && c <= 15)
+		if (c >= 10 && c <= 15 && lettre == 'x')
 			str[i] = c + 87;
+		if (c >= 10 && c <= 15 && lettre == 'X')
+			str[i] = c + 55;
 		hexa = hexa / 16;
 		i++;
 	}
 	i--;
+	if (lettre == 'p')
+		write(1, "0x", 2);
 	while (i > -1)
 	{
 		write(1, &str[i], 1);
@@ -85,6 +89,24 @@ int	ft_puthexa(long int hexa)
 	return (i);
 }
 
+int	ft_putunsigned(int s)
+{
+	unsigned int	u;
+	char			ptr[10];
+	int				i;
+
+	i = 0;
+	u = s + UINT_MAX + 1;
+	while (u > 0)
+	{
+		ptr[i] = u % 10 + 48;
+		u /= 10;
+		i++;
+	}
+	while (--i > -1)
+		write(1, &ptr[i], 1);
+	return (1);
+}
 
 int	write_argument(char argument, va_list ap)
 {
@@ -93,14 +115,20 @@ int	write_argument(char argument, va_list ap)
 	count = 0;
 	if (argument == 'd')
 		count = ft_putnbr(va_arg(ap, int));
+	else if (argument == 'u')
+		count = ft_putunsigned(va_arg(ap, int));
 	else if (argument == 'c')
 		count = ft_putchar(va_arg(ap, int));
 	else if (argument == 's')
 		count = ft_putstr(va_arg(ap, char *));
 	else if (argument == 'p')
-		count = 1;
+		count = ft_puthexa(va_arg(ap, size_t), 'p');
 	else if (argument == 'x')
-		count = ft_puthexa(va_arg(ap, unsigned int));
+		count = ft_puthexa(va_arg(ap, size_t), 'x');
+	else if (argument == 'X')
+		count = ft_puthexa(va_arg(ap, size_t), 'X');
+	else if (argument == '%')
+			write(1, "%", 1);
 	return (count);
 }
 
