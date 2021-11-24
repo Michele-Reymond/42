@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:08:15 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/24 14:00:29 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/24 18:41:58 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,27 @@ int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
 	int		i;
+	int		count;
 
 	i = 0;
+	count = 0;
 	va_start(ap, str);
 	while (str[i] != '\0')
 	{
-		if (str[i] == '%')
+		if (str[i] != '%')
 		{
-			write_argument(str[i + 1], ap);
-			i = i + 2;
+			write(1, &str[i], 1);
+			count++;
 		}
-		write(1, &str[i], 1);
+		else
+		{
+			i++;
+			count = count + write_argument(str[i], ap);
+		}
 		i++;
 	}
 	va_end(ap);
-	return (1);
+	return (count);
 }
 
 /**
