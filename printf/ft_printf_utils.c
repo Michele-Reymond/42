@@ -3,22 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:14:01 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/24 18:41:57 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/25 17:38:04 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(int n)
+int	ft_putnbrwrite(int n)
 {
 	int		i;
 	char	ptr[12];
 	int		count;
 
 	i = 0;
+	count = 0;
+	while (n > 0)
+	{
+		ptr[i] = n % 10 + 48;
+		n /= 10;
+		count++;
+		i++;
+	}
+	while (--i > -1)
+		write(1, &ptr[i], 1);
+	return (count);
+}
+
+int	ft_putnbr(int n)
+{
+	int	count;
+
 	count = 0;
 	if (n == INT_MIN)
 	{
@@ -36,16 +53,18 @@ int	ft_putnbr(int n)
 		n = -n;
 		write(1, "-", 1);
 	}
-	while (n > 0)
-	{
-		ptr[i] = n % 10 + 48;
-		n /= 10;
-		count++;
-		i++;
-	}
-	while (--i > -1)
-		write(1, &ptr[i], 1);
+	count = count + ft_putnbrwrite(n);
 	return (count);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
 int	ft_putchar(char c)
@@ -69,10 +88,10 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
-int	ft_puthexa(size_t hexa, char lettre)
+int	ft_hexwrite(size_t hexa, char lettre)
 {
 	int		i;
-	char	str[100];
+	char	str[10];
 	char	c;
 	int		count;
 
@@ -91,18 +110,38 @@ int	ft_puthexa(size_t hexa, char lettre)
 		i++;
 		count++;
 	}
-	i--;
-	if (lettre == 'p')
-	{
-		count = count + 2;
-		write(1, "0x", 2);
-	}
-	while (i > -1)
-	{
+	while (--i > -1)
 		write(1, &str[i], 1);
-		i--;
-	}
 	return (count);
+}
+
+int	ft_puthexa(unsigned int hexa, char lettre)
+{
+	int		count;
+
+	count = 0;
+	if (hexa == 0)
+	{
+		count++;
+		write(1, "0", 1);
+	}
+	count = count + ft_hexwrite(hexa, lettre);
+	return (count);
+}
+
+int	ft_putadresse(size_t adresse)
+{
+	int		count;
+
+	count = 2;
+	write(1, "0x", 2);
+	if (adresse == 0)
+	{
+		count++;
+		write(1, "0", 1);
+	}
+	count = count + ft_hexwrite(adresse, 'p');
+	return (count);	
 }
 
 int	ft_putunsigned(int s)
@@ -115,6 +154,11 @@ int	ft_putunsigned(int s)
 	i = 0;
 	count = 0;
 	u = s + UINT_MAX + 1;
+	if (u == 0)
+	{
+		write(1, "0", 1);
+		count++;
+	}
 	while (u > 0)
 	{
 		ptr[i] = u % 10 + 48;
@@ -141,11 +185,11 @@ int	write_argument(char argument, va_list ap)
 	else if (argument == 's')
 		count = ft_putstr(va_arg(ap, char *));
 	else if (argument == 'p')
-		count = ft_puthexa(va_arg(ap, size_t), 'p');
+		count = ft_putadresse(va_arg(ap, size_t));
 	else if (argument == 'x')
-		count = ft_puthexa(va_arg(ap, size_t), 'x');
+		count = ft_puthexa(va_arg(ap, unsigned int), 'x');
 	else if (argument == 'X')
-		count = ft_puthexa(va_arg(ap, size_t), 'X');
+		count = ft_puthexa(va_arg(ap, unsigned int), 'X');
 	else if (argument == '%')
 	{
 		count = 1;
@@ -154,29 +198,4 @@ int	write_argument(char argument, va_list ap)
 	return (count);
 }
 
-// La fonction retourne le nbr de caractères imprimés (variable static?)
-
-// si argument == d
-// > utiliser putnbr
-
-// si argument == c
-// > utiliser putchar
-
-// si argument == s
-// > utiliser putstring
-
-// si argument == p
-// > imprimer l'adresse du pointeur
-
-// si argument == i
-// > utiliser putnbr
-
-// si argument == u
-// > passer en positif
-// > utiliser putnbr
-
-// si argument == x
-// > utiliser une fonction qui imprimer en Hexadecimale
-
-// si argument == %
-// > utiliser putchar de %
+// La fonction retourne le nbr de caractères imprimés

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:08:15 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/24 18:41:58 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/25 17:41:46 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,3 @@ int	ft_printf(const char *str, ...)
  * @return int (nbr de charactères imprimés avant le \0)
  * arglist est un objet de type va_list (liste des arguments)
  */
-
-//PSEUDO CODE
-//  1. il faut iterer tant qu'on est pas a la fin de la string
-//  2. si on tombe sur un % on check le caractere suivant pour 
-//  le remplacer par ce qu-il faut
-//  3. si c'est un d utiliser putnbr par exemple. 
-//  4. sinon on utilise putchar et on compte le nbr de caracteres
