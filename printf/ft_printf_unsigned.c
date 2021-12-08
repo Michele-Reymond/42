@@ -1,46 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 16:08:15 by mreymond          #+#    #+#             */
-/*   Updated: 2021/12/08 15:45:45 by mreymond         ###   ########.fr       */
+/*   Created: 2021/11/26 16:23:23 by mreymond          #+#    #+#             */
+/*   Updated: 2021/11/26 16:23:55 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_putunsigned(int s)
 {
-	va_list	ap;
-	int		i;
-	int		count;
+	unsigned int	u;
+	char			ptr[10];
+	int				i;
+	int				count;
 
 	i = 0;
 	count = 0;
-	va_start(ap, str);
-	while (str[i] != '\0')
+	u = s + UINT_MAX + 1;
+	if (u == 0)
 	{
-		if (str[i] != '%')
-		{
-			write(1, &str[i], 1);
-			count++;
-		}
-		else
-		{
-			i++;
-			count = count + write_argument(str[i], ap);
-		}
+		write(1, "0", 1);
+		count++;
+	}
+	while (u > 0)
+	{
+		ptr[i] = u % 10 + 48;
+		u /= 10;
+		count++;
 		i++;
 	}
-	va_end(ap);
+	while (--i > -1)
+		write(1, &ptr[i], 1);
 	return (count);
 }
-
-/**
- * @brief fonction qui fonctionne comme printf
- * @return int (nbr de charactères imprimés avant le \0)
- * arglist est un objet de type va_list (liste des arguments)
- */

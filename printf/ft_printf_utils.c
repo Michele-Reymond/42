@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 17:14:01 by mreymond          #+#    #+#             */
-/*   Updated: 2021/11/25 17:38:04 by mreymond         ###   ########.fr       */
+/*   Updated: 2021/11/26 16:24:20 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,6 @@ int	ft_putnbr(int n)
 	return (count);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
 int	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -86,89 +76,6 @@ int	ft_putstr(char *s)
 	while (s[++i] != '\0')
 		write(1, &s[i], 1);
 	return (i);
-}
-
-int	ft_hexwrite(size_t hexa, char lettre)
-{
-	int		i;
-	char	str[10];
-	char	c;
-	int		count;
-
-	i = 0;
-	count = 0;
-	while (hexa != 0)
-	{
-		c = hexa % 16;
-		if (c >= 0 && c <= 9)
-			str[i] = c + 48;
-		if (c >= 10 && c <= 15 && (lettre == 'x' || lettre == 'p'))
-			str[i] = c + 'a' - 10;
-		if (c >= 10 && lettre == 'X')
-			str[i] = c + 'A' - 10;
-		hexa = hexa / 16;
-		i++;
-		count++;
-	}
-	while (--i > -1)
-		write(1, &str[i], 1);
-	return (count);
-}
-
-int	ft_puthexa(unsigned int hexa, char lettre)
-{
-	int		count;
-
-	count = 0;
-	if (hexa == 0)
-	{
-		count++;
-		write(1, "0", 1);
-	}
-	count = count + ft_hexwrite(hexa, lettre);
-	return (count);
-}
-
-int	ft_putadresse(size_t adresse)
-{
-	int		count;
-
-	count = 2;
-	write(1, "0x", 2);
-	if (adresse == 0)
-	{
-		count++;
-		write(1, "0", 1);
-	}
-	count = count + ft_hexwrite(adresse, 'p');
-	return (count);	
-}
-
-int	ft_putunsigned(int s)
-{
-	unsigned int	u;
-	char			ptr[10];
-	int				i;
-	int				count;
-
-	i = 0;
-	count = 0;
-	u = s + UINT_MAX + 1;
-	if (u == 0)
-	{
-		write(1, "0", 1);
-		count++;
-	}
-	while (u > 0)
-	{
-		ptr[i] = u % 10 + 48;
-		u /= 10;
-		count++;
-		i++;
-	}
-	while (--i > -1)
-		write(1, &ptr[i], 1);
-	return (count);
 }
 
 int	write_argument(char argument, va_list ap)
