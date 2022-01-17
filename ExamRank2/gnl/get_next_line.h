@@ -6,7 +6,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include <fcntl.h>
 
 char	*get_next_line(int fd);
 char    *ft_strchr(char *s, int lettre);

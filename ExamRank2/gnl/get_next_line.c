@@ -1,4 +1,3 @@
-
 #include "get_next_line.h"
 
 size_t ft_strlen(char *str)
@@ -26,14 +25,16 @@ char *ft_strchr(char *str, int lettre)
 			return (str);
 		str++;
 	}
+	if (*str == c)
+		return (str);
 	return (NULL);
 }
 
 char *strjoin(char *s1, char *s2)
 {
-	char *joined;
 	int i;
 	int j;
+	char *joined;
 
 	i = 0;
 	if (!s1)
@@ -47,20 +48,20 @@ char *strjoin(char *s1, char *s2)
 	joined = (char *)malloc(sizeof(char) * j + 1);
 	if (joined == NULL)
 		return (NULL);
+	j = 0;
 	while (s1[i] != '\0')
 	{
 		joined[i] = s1[i];
 		i++;
 	}
-	j = 0;
 	while (s2[j] != '\0')
 	{
 		joined[i] = s2[j];
 		i++;
 		j++;
 	}
-	free(s1);
 	joined[i] = '\0';
+	free(s1);
 	return (joined);
 }
 
@@ -92,7 +93,6 @@ char *clean_end_of_line(char *str)
 	return (cleaned);
 }
 
-
 char *clean_start_of_line(char *str)
 {
 	char *cleaned;
@@ -103,7 +103,7 @@ char *clean_start_of_line(char *str)
 	j = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
-	if (!str[i])
+	if (str[i] == 0)
 	{
 		free(str);
 		return (NULL);
@@ -112,7 +112,7 @@ char *clean_start_of_line(char *str)
 	if (cleaned == NULL)
 		return (NULL);
 	i++;
-	while (str[i] != '\0')
+	while (str[i] && str[i] != '\0')
 	{
 		cleaned[j] = str[i];
 		i++;
@@ -125,10 +125,10 @@ char *clean_start_of_line(char *str)
 
 char *get_next_line(int fd)
 {
-	char buffer[BUFFER_SIZE + 1];
 	static char *line;
-	char *returned_line;
+	char buffer[BUFFER_SIZE + 1];
 	int lecture;
+	char *returned_line;
 
 	lecture = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -149,63 +149,7 @@ char *get_next_line(int fd)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
-
 size_t ft_strlen(char *str)
 {
 	size_t i;

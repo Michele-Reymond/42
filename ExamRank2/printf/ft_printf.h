@@ -4,6 +4,7 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdlib.h>
 
 int ft_putstr(char *s);
 int ft_putnbr(int n);
