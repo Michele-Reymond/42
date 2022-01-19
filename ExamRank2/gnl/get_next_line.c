@@ -135,23 +135,32 @@ char *clean_start_of_line(char *str)
 char *get_next_line(int fd)
 {
 	static char *line;
-	char buffer[BUFFER_SIZE + 1];
+	char *buffer;
 	int lecture;
 	char *returned_line;
 
 	lecture = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	buffer = (char *)malloc(BUFFER_SIZE + 1);
+	if (buffer == NULL)
+		return (NULL);
 	while (lecture != 0 && ft_strchr(line, '\n') == NULL)
 	{
 		lecture = read(fd, buffer, BUFFER_SIZE);
 		if (lecture == -1)
+		{
+			free(buffer);
 			return (NULL);
+		}
 		buffer[lecture] = '\0';
 		line = strjoin(line, buffer);
 	}
-	if (line == NULL)
-		return (NULL);
+	if (buffer)
+	{
+		free(buffer);
+		buffer = NULL;
+	}
 	returned_line = clean_end_of_line(line);
 	line = clean_start_of_line(line);
 	return (returned_line);
