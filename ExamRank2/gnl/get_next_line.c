@@ -37,18 +37,12 @@ char *strjoin(char *s1, char *s2)
 	char *joined;
 
 	i = 0;
-	if (!s1)
-	{
-		s1 = (char *)malloc(sizeof(char) * 1);
-		s1[0] = '\0';
-	}
+	j = 0;
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	j = ft_strlen(s1) + ft_strlen(s2);
-	joined = (char *)malloc(sizeof(char) * j + 1);
+	joined = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (joined == NULL)
 		return (NULL);
-	j = 0;
 	while (s1[i] != '\0')
 	{
 		joined[i] = s1[i];
@@ -136,6 +130,7 @@ char *get_next_line(int fd)
 {
 	static char *line;
 	char *buffer;
+	char *tmp;
 	int lecture;
 	char *returned_line;
 
@@ -145,7 +140,8 @@ char *get_next_line(int fd)
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (buffer == NULL)
 		return (NULL);
-	while (lecture != 0 && ft_strchr(line, '\n') == NULL)
+	tmp = line;
+	while (lecture != 0 && ft_strchr(tmp, '\n') == NULL)
 	{
 		lecture = read(fd, buffer, BUFFER_SIZE);
 		if (lecture == -1)
@@ -154,29 +150,34 @@ char *get_next_line(int fd)
 			return (NULL);
 		}
 		buffer[lecture] = '\0';
-		line = strjoin(line, buffer);
+		if (!tmp)
+		{
+			tmp = (char *)malloc(sizeof(char) * 1);
+			tmp[0] = '\0';
+		}
+		tmp = strjoin(tmp, buffer);
 	}
 	if (buffer)
 	{
 		free(buffer);
 		buffer = NULL;
 	}
-	returned_line = clean_end_of_line(line);
-	line = clean_start_of_line(line);
+	returned_line = clean_end_of_line(tmp);
+	line = clean_start_of_line(tmp);
 	return (returned_line);
 }
 
-// int main()
-// {
-// 	int fd;
-// 	char *line;
-// 	int d;
+int main()
+{
+	int fd;
+	char *line;
+	int d;
 
-// 	d = 0;
-// 	fd = open("test.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	printf("line %d : %s", d, line);
-// 	line = get_next_line(fd);
-// 	d++;
-// 	printf("line %d : %s", d, line);
-// }
+	d = 0;
+	fd = open("test.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf("line %d : %s", d, line);
+	line = get_next_line(fd);
+	d++;
+	printf("line %d : %s", d, line);
+}
