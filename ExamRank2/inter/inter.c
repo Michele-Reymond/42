@@ -45,16 +45,16 @@ void printself(char* str, int cursor)
 	ft_putchar(str[cursor]);
 }
 
-int main (int argv, char **argc)
+int main (int argc, char **argv)
 {
 	char *str1;
 	char *str2;
 	int	i;
 
 	i = 0;
-	str1 = argc[1];
-	str2 = argc[2];
-	if (argv != 3)
+	str1 = argv[1];
+	str2 = argv[2];
+	if (argc != 3)
 	{
 		ft_putchar('\n');
 		return (0);
